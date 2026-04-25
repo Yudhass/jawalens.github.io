@@ -1,0 +1,1987 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Tutorial Instalasi & Troubleshooting - JawaLens</title>
+  <meta name="description"
+    content="Panduan lengkap cara menginstal aplikasi JawaLens, cara penggunaan, serta solusi mengatasi masalah dan error yang mungkin terjadi.">
+  <meta name="keywords"
+    content="JawaLens, tutorial instalasi, troubleshooting, error, cara install, panduan, AR, aksara Jawa">
+  <meta name="author" content="JawaLens Team">
+  <meta name="robots" content="index, follow">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    /* ─── Tutorial Page Custom Styles ─────────────────────── */
+
+    /* Hero Banner */
+    .tutorial-hero {
+      background: linear-gradient(135deg,
+          color-mix(in srgb, var(--accent-color), transparent 90%) 0%,
+          color-mix(in srgb, var(--heading-color), transparent 85%) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tutorial-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 20%,
+          color-mix(in srgb, var(--accent-color), transparent 80%) 0%,
+          transparent 55%);
+      pointer-events: none;
+    }
+
+    .tutorial-hero .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: color-mix(in srgb, var(--accent-color), transparent 85%);
+      color: var(--accent-color);
+      border: 1px solid color-mix(in srgb, var(--accent-color), transparent 70%);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .tutorial-hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--heading-color);
+    }
+
+    .tutorial-hero h1 span {
+      color: var(--accent-color);
+    }
+
+    .tutorial-hero .hero-img-wrapper {
+      position: relative;
+    }
+
+    .tutorial-hero .hero-img-wrapper img {
+      border-radius: 20px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+    }
+
+    .tutorial-hero .floating-card {
+      position: absolute;
+      background: #fff;
+      border-radius: 14px;
+      padding: 12px 18px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--heading-color);
+      white-space: nowrap;
+    }
+
+    .tutorial-hero .floating-card i {
+      font-size: 20px;
+      color: var(--accent-color);
+    }
+
+    .tutorial-hero .floating-card.card-1 {
+      bottom: 30px;
+      left: -20px;
+    }
+
+    .tutorial-hero .floating-card.card-2 {
+      top: 20px;
+      right: -20px;
+    }
+
+    @media (max-width: 992px) {
+      .tutorial-hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .tutorial-hero .floating-card.card-1 {
+        left: 10px;
+      }
+
+      .tutorial-hero .floating-card.card-2 {
+        right: 10px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .tutorial-hero h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* ─── Quick Nav Chips ─── */
+    .quick-nav {
+      background: var(--surface-color);
+      border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+      position: sticky;
+      top: 86px;
+      /* matches actual fixed header height (20px padding × 2 + 46px container) */
+      z-index: 100;
+      padding: 14px 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .quick-nav .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--default-color);
+      background: color-mix(in srgb, var(--default-color), transparent 93%);
+      text-decoration: none;
+      transition: 0.25s;
+      white-space: nowrap;
+    }
+
+    .quick-nav .chip:hover,
+    .quick-nav .chip.active {
+      background: var(--accent-color);
+      color: #fff;
+    }
+
+    .quick-nav .chips-wrapper {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+
+    .quick-nav .chips-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* ─── Section Common ─── */
+    .tut-section {
+      padding: 80px 0;
+    }
+
+    .tut-section.bg-light-alt {
+      background: #f8fafd;
+    }
+
+    .tut-section-title {
+      margin-bottom: 50px;
+    }
+
+    .tut-section-title .label {
+      display: inline-block;
+      background: color-mix(in srgb, var(--accent-color), transparent 88%);
+      color: var(--accent-color);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+    }
+
+    .tut-section-title h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--heading-color);
+      margin-bottom: 12px;
+    }
+
+    .tut-section-title p {
+      color: color-mix(in srgb, var(--default-color), transparent 30%);
+      font-size: 16px;
+      max-width: 600px;
+    }
+
+    /* ─── Requirements Cards ─── */
+    .req-card {
+      background: var(--surface-color);
+      border-radius: 16px;
+      padding: 28px 24px;
+      border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+      height: 100%;
+      transition: 0.3s;
+    }
+
+    .req-card:hover {
+      border-color: var(--accent-color);
+      box-shadow: 0 8px 30px color-mix(in srgb, var(--accent-color), transparent 85%);
+      transform: translateY(-4px);
+    }
+
+    .req-card .req-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .req-card .req-icon.maroon {
+      background: color-mix(in srgb, var(--accent-color), transparent 88%);
+      color: var(--accent-color);
+    }
+
+    .req-card .req-icon.blue {
+      background: #e8f0fe;
+      color: #1a73e8;
+    }
+
+    .req-card .req-icon.green {
+      background: #e6f4ea;
+      color: #1e8e3e;
+    }
+
+    .req-card .req-icon.orange {
+      background: #fef3e2;
+      color: #e37400;
+    }
+
+    .req-card h5 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--heading-color);
+      margin-bottom: 8px;
+    }
+
+    .req-card .req-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent-color);
+      margin-bottom: 4px;
+    }
+
+    .req-card p {
+      font-size: 13px;
+      color: color-mix(in srgb, var(--default-color), transparent 40%);
+      margin: 0;
+    }
+
+    /* ─── Installation Steps ─── */
+    .step-timeline {
+      position: relative;
+    }
+
+    .step-timeline::before {
+      content: "";
+      position: absolute;
+      left: 27px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom,
+          var(--accent-color),
+          color-mix(in srgb, var(--accent-color), transparent 60%));
+    }
+
+    @media (max-width: 767px) {
+      .step-timeline::before {
+        left: 23px;
+      }
+    }
+
+    .step-item {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 48px;
+      position: relative;
+    }
+
+    .step-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px color-mix(in srgb, var(--accent-color), transparent 55%);
+      position: relative;
+      z-index: 2;
+    }
+
+    .step-body {
+      flex: 1;
+      padding-top: 8px;
+    }
+
+    .step-body h4 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--heading-color);
+      margin-bottom: 8px;
+    }
+
+    .step-body p {
+      color: color-mix(in srgb, var(--default-color), transparent 25%);
+      font-size: 14.5px;
+      margin-bottom: 12px;
+    }
+
+    .step-body .step-img {
+      border-radius: 12px;
+      overflow: hidden;
+      max-height: 220px;
+      width: 100%;
+      object-fit: cover;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 12px;
+      border-radius: 50px;
+    }
+
+    .step-badge.badge-warning {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .step-badge.badge-info {
+      background: #cff4fc;
+      color: #055160;
+    }
+
+    /* ─── Usage Guide ─── */
+    .usage-card {
+      background: var(--surface-color);
+      border-radius: 16px;
+      padding: 32px 28px;
+      border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+      height: 100%;
+      transition: 0.3s;
+      text-align: center;
+    }
+
+    .usage-card:hover {
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      transform: translateY(-5px);
+    }
+
+    .usage-card .usage-num {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      color: #fff;
+      font-weight: 800;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .usage-card .usage-icon {
+      font-size: 38px;
+      color: var(--accent-color);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .usage-card h5 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--heading-color);
+      margin-bottom: 8px;
+    }
+
+    .usage-card p {
+      font-size: 13.5px;
+      color: color-mix(in srgb, var(--default-color), transparent 35%);
+      margin: 0;
+    }
+
+    /* ─── Troubleshooting ─── */
+    .trouble-card {
+      background: var(--surface-color);
+      border-radius: 16px;
+      border: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+      overflow: hidden;
+      margin-bottom: 18px;
+      transition: box-shadow 0.3s;
+    }
+
+    .trouble-card:hover {
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .trouble-card .trouble-header {
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      transition: background 0.2s;
+    }
+
+    .trouble-card .trouble-header:hover {
+      background: color-mix(in srgb, var(--default-color), transparent 96%);
+    }
+
+    .trouble-card .trouble-icon-wrap {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .trouble-card .trouble-icon-wrap.red {
+      background: #fde8e8;
+      color: #c0392b;
+    }
+
+    .trouble-card .trouble-icon-wrap.orange {
+      background: #fef3e2;
+      color: #e37400;
+    }
+
+    .trouble-card .trouble-icon-wrap.blue {
+      background: #e8f0fe;
+      color: #1a73e8;
+    }
+
+    .trouble-card .trouble-icon-wrap.green {
+      background: #e6f4ea;
+      color: #1e8e3e;
+    }
+
+    .trouble-card .trouble-icon-wrap.purple {
+      background: #f0ebfe;
+      color: #6c3fc5;
+    }
+
+    .trouble-card .trouble-title {
+      flex: 1;
+    }
+
+    .trouble-card .trouble-title h5 {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--heading-color);
+      margin-bottom: 4px;
+    }
+
+    .trouble-card .trouble-title .error-tag {
+      font-size: 11.5px;
+      color: color-mix(in srgb, var(--default-color), transparent 45%);
+      font-family: var(--nav-font);
+    }
+
+    .trouble-card .trouble-toggle {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--default-color), transparent 92%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--default-color);
+      transition: 0.3s;
+      margin-top: 4px;
+    }
+
+    .trouble-card.open .trouble-toggle {
+      transform: rotate(180deg);
+      background: var(--accent-color);
+      color: #fff;
+    }
+
+    .trouble-card .trouble-body {
+      display: none;
+      padding: 0 24px 24px 82px;
+    }
+
+    .trouble-card.open .trouble-body {
+      display: block;
+    }
+
+    .trouble-card .trouble-body p {
+      font-size: 14.5px;
+      color: color-mix(in srgb, var(--default-color), transparent 20%);
+      margin-bottom: 12px;
+    }
+
+    .trouble-card .trouble-body ol,
+    .trouble-card .trouble-body ul {
+      padding-left: 20px;
+      font-size: 14px;
+      color: color-mix(in srgb, var(--default-color), transparent 20%);
+    }
+
+    .trouble-card .trouble-body li {
+      padding: 4px 0;
+    }
+
+    .trouble-card .trouble-body .solution-img {
+      border-radius: 10px;
+      max-height: 180px;
+      width: 100%;
+      object-fit: cover;
+      margin-top: 14px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .trouble-card .trouble-body .tip-box {
+      background: color-mix(in srgb, var(--accent-color), transparent 92%);
+      border-left: 3px solid var(--accent-color);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      font-size: 13.5px;
+      color: var(--default-color);
+      margin-top: 12px;
+    }
+
+    .trouble-card .trouble-body .tip-box i {
+      color: var(--accent-color);
+    }
+
+    @media (max-width: 576px) {
+      .trouble-card .trouble-body {
+        padding-left: 24px;
+      }
+    }
+
+    /* ─── FAQ Section ─── */
+    .faq-item {
+      background: var(--surface-color);
+      border: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-item .faq-question {
+      padding: 18px 22px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: background 0.2s;
+    }
+
+    .faq-item .faq-question:hover {
+      background: color-mix(in srgb, var(--default-color), transparent 96%);
+    }
+
+    .faq-item .faq-question h6 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--heading-color);
+      margin: 0;
+    }
+
+    .faq-item .faq-question .faq-toggle {
+      flex-shrink: 0;
+      font-size: 18px;
+      color: var(--accent-color);
+      transition: transform 0.3s;
+    }
+
+    .faq-item.open .faq-question .faq-toggle {
+      transform: rotate(45deg);
+    }
+
+    .faq-item .faq-answer {
+      display: none;
+      padding: 0 22px 20px;
+      font-size: 14.5px;
+      color: color-mix(in srgb, var(--default-color), transparent 25%);
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    /* ─── Support Sidebar ─── */
+    .support-sidebar {
+      position: sticky;
+      top: 162px;
+      /* 86px header + 64px quick-nav bar + 12px gap */
+    }
+
+    .sidebar-card {
+      background: var(--surface-color);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+      margin-bottom: 20px;
+    }
+
+    .sidebar-card h5 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--heading-color);
+      padding-bottom: 14px;
+      border-bottom: 2px solid color-mix(in srgb, var(--default-color), transparent 90%);
+      margin-bottom: 14px;
+    }
+
+    .sidebar-card .toc-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 0;
+      font-size: 13.5px;
+      color: color-mix(in srgb, var(--default-color), transparent 20%);
+      text-decoration: none;
+      border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 93%);
+      transition: 0.2s;
+    }
+
+    .sidebar-card .toc-link:last-child {
+      border-bottom: none;
+    }
+
+    .sidebar-card .toc-link:hover {
+      color: var(--accent-color);
+      padding-left: 4px;
+    }
+
+    .sidebar-card .toc-link i {
+      font-size: 14px;
+      color: var(--accent-color);
+    }
+
+    .sidebar-card .dl-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: var(--accent-color);
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .sidebar-card .dl-btn:hover {
+      background: color-mix(in srgb, var(--accent-color), #000 15%);
+      color: #fff;
+    }
+
+    .sidebar-card .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 0;
+      font-size: 13.5px;
+      color: color-mix(in srgb, var(--default-color), transparent 20%);
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .sidebar-card .contact-link:hover {
+      color: var(--accent-color);
+    }
+
+    .sidebar-card.dark-card {
+      background: var(--accent-color);
+      border: none;
+    }
+
+    .sidebar-card.dark-card h5,
+    .sidebar-card.dark-card p,
+    .sidebar-card.dark-card a {
+      color: #fff;
+    }
+
+    .sidebar-card.dark-card i {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* ─── CTA Banner ─── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--accent-color) 0%, color-mix(in srgb, var(--accent-color), #000 20%) 100%);
+      border-radius: 24px;
+      padding: 60px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-banner::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .cta-banner::after {
+      content: "";
+      position: absolute;
+      bottom: -30%;
+      left: -5%;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .cta-banner h2 {
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .cta-banner p {
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 16px;
+      max-width: 500px;
+      margin: 0 auto 28px;
+    }
+
+    .cta-banner .btn-white {
+      background: #fff;
+      color: var(--accent-color);
+      border-radius: 50px;
+      padding: 12px 32px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+
+    .cta-banner .btn-white:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 576px) {
+      .cta-banner {
+        padding: 40px 24px;
+      }
+
+      .cta-banner h2 {
+        font-size: 1.6rem;
+      }
+    }
+
+    /* ─── Nav: reduce padding at xl (1200-1399px) so 8 items don't overflow ─── */
+    @media (min-width: 1200px) and (max-width: 1399px) {
+
+      .navmenu a,
+      .navmenu a:focus {
+        padding: 18px 9px !important;
+        font-size: 14.5px !important;
+      }
+
+      .header .btn-getstarted {
+        margin-left: 16px !important;
+        padding: 8px 14px !important;
+        font-size: 13px !important;
+      }
+    }
+
+    /* ─── At xxl (≥1400px) restore comfortable spacing ─── */
+    @media (min-width: 1400px) {
+
+      .navmenu a,
+      .navmenu a:focus {
+        padding: 18px 13px !important;
+      }
+    }
+
+    /* ─── Section scroll-margin accounts for header + quick-nav ─── */
+    @media (min-width: 1200px) {
+
+      #persyaratan,
+      #instalasi,
+      #penggunaan,
+      #troubleshooting,
+      #faq-tut {
+        scroll-margin-top: 162px !important;
+      }
+
+      #dukungan {
+        scroll-margin-top: 100px !important;
+      }
+    }
+
+    @media (max-width: 1199px) {
+      .quick-nav {
+        top: 66px;
+        /* mobile header is shorter */
+      }
+
+      .support-sidebar {
+        position: static;
+      }
+
+      #persyaratan,
+      #instalasi,
+      #penggunaan,
+      #troubleshooting,
+      #faq-tut {
+        scroll-margin-top: 140px !important;
+      }
+    }
+
+    /* ─── Screenshot Thumbnail Gallery (GLightbox) ─── */
+    .screenshot-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .screenshot-thumb {
+      display: block;
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      width: 80px;
+      cursor: zoom-in;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+      transition: transform 0.25s, box-shadow 0.25s;
+      text-decoration: none;
+    }
+
+    .screenshot-thumb img {
+      display: block;
+      width: 100%;
+      height: 142px;
+      /* portrait ratio ~9:16 */
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .screenshot-thumb:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+    }
+
+    /* Zoom icon overlay on hover */
+    .screenshot-thumb::after {
+      content: "\F52A";
+      /* bi-zoom-in */
+      font-family: "bootstrap-icons";
+      font-size: 18px;
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(128, 0, 0, 0.55);
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .screenshot-thumb:hover::after {
+      opacity: 1;
+    }
+
+    /* Step label below each thumb */
+    .screenshot-thumb .thumb-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      color: #fff;
+      font-size: 9.5px;
+      font-weight: 600;
+      text-align: center;
+      padding: 12px 4px 5px;
+      line-height: 1.2;
+    }
+
+    @media (max-width: 480px) {
+      .screenshot-thumb {
+        width: 68px;
+      }
+
+      .screenshot-thumb img {
+        height: 122px;
+      }
+    }
+  </style>
+</head>
+
+<body class="service-details-page">
+
+  <!-- ══════ HEADER ══════ -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div
+      class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="assets/img/logo.png" style="border-radius: 50%;" alt="JawaLens Logo">
+        <h1 class="sitename">JawaLens</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="./index.html#beranda">Beranda</a></li>
+          <li><a href="./index.html#tentang">Tentang</a></li>
+          <li><a href="./index.html#fitur">Fitur</a></li>
+          <li><a href="./index.html#aplikasi">Aplikasi</a></li>
+          <li><a href="./index.html#testimonials">Testimoni</a></li>
+          <li><a href="./index.html#faq">FAQ</a></li>
+          <li class="dropdown">
+            <a href="#"><span>More</span>
+              <i class="bi bi-chevron-down toggle-dropdown"></i>
+            </a>
+            <ul>
+              <li><a href="./haki.html">Sertifikasi HAKI</a></li>
+              <li><a href="./keamanan.html">Keamanan Aplikasi</a></li>
+              <li><a href="./tutorial.html" class="active">Tutorial & Panduan</a></li>
+            </ul>
+          </li>
+          <li><a href="./index.html#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="https://s.id/jawalens" target="_blank">
+        <i class="bi bi-android2 me-1"></i>
+        Download
+      </a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- ══════ HERO BANNER ══════ -->
+    <section class="tutorial-hero tut-section" style="padding-top: 140px;" id="hero">
+      <div class="container">
+        <div class="row align-items-center gy-5">
+          <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+            <div class="hero-badge">
+              <i class="bi bi-journal-bookmark-fill"></i>
+              Panduan Lengkap JawaLens
+            </div>
+            <h1>Tutorial Instalasi &amp;<br><span>Troubleshooting</span><br>JawaLens</h1>
+            <p class="mt-3 mb-4"
+              style="font-size:16px; color: color-mix(in srgb, var(--default-color), transparent 30%);">
+              Panduan lengkap mulai dari cara mengunduh, menginstal, menggunakan aplikasi JawaLens,
+              hingga solusi mengatasi error dan masalah yang mungkin Anda temui.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+              <a href="#instalasi" class="btn btn-primary" style="border-radius:50px; padding: 10px 26px;">
+                <i class="bi bi-download me-2"></i>Panduan Instalasi
+              </a>
+              <a href="#troubleshooting" class="btn btn-outline-secondary"
+                style="border-radius:50px; padding: 10px 26px;">
+                <i class="bi bi-tools me-2"></i>Troubleshooting
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+            <div class="hero-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=80"
+                class="img-fluid w-100" alt="Tutorial JawaLens - Aplikasi AR Aksara Jawa"
+                style="border-radius:20px; max-height: 420px; object-fit: cover;">
+              <div class="floating-card card-1" data-aos="fade-up" data-aos-delay="400">
+                <i class="bi bi-shield-check"></i>
+                <span>100% Aman Digunakan</span>
+              </div>
+              <div class="floating-card card-2" data-aos="fade-down" data-aos-delay="500">
+                <i class="bi bi-star-fill" style="color: #f5a623;"></i>
+                <span>Mudah Dipahami</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ QUICK NAV ══════ -->
+    <div class="quick-nav" data-aos="fade-up">
+      <div class="container">
+        <div class="chips-wrapper">
+          <a href="#persyaratan" class="chip"><i class="bi bi-phone"></i> Persyaratan</a>
+          <a href="#instalasi" class="chip"><i class="bi bi-download"></i> Instalasi</a>
+          <a href="#penggunaan" class="chip"><i class="bi bi-play-circle"></i> Penggunaan</a>
+          <a href="#troubleshooting" class="chip"><i class="bi bi-tools"></i> Troubleshooting</a>
+          <a href="#faq-tut" class="chip"><i class="bi bi-question-circle"></i> FAQ</a>
+          <a href="#dukungan" class="chip"><i class="bi bi-headset"></i> Dukungan</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════ MAIN CONTENT + SIDEBAR ══════ -->
+    <section class="tut-section" style="padding-top: 60px;">
+      <div class="container">
+        <div class="row gy-5">
+
+          <!-- ── SIDEBAR ── -->
+          <div class="col-lg-3 order-lg-last">
+            <div class="support-sidebar">
+
+              <!-- Table of Contents -->
+              <div class="sidebar-card" data-aos="fade-left" data-aos-delay="100">
+                <h5><i class="bi bi-list-nested me-2" style="color:var(--accent-color);"></i>Daftar Isi</h5>
+                <a href="#persyaratan" class="toc-link"><i class="bi bi-chevron-right"></i> Persyaratan Sistem</a>
+                <a href="#instalasi" class="toc-link"><i class="bi bi-chevron-right"></i> Cara Instalasi</a>
+                <a href="#penggunaan" class="toc-link"><i class="bi bi-chevron-right"></i> Cara Penggunaan</a>
+                <a href="#troubleshooting" class="toc-link"><i class="bi bi-chevron-right"></i> Troubleshooting</a>
+                <a href="#faq-tut" class="toc-link"><i class="bi bi-chevron-right"></i> FAQ</a>
+                <a href="#dukungan" class="toc-link"><i class="bi bi-chevron-right"></i> Dukungan</a>
+              </div>
+
+              <!-- Download -->
+              <div class="sidebar-card" data-aos="fade-left" data-aos-delay="150">
+                <h5><i class="bi bi-download me-2" style="color:var(--accent-color);"></i>Unduh Aplikasi</h5>
+                <p
+                  style="font-size:13px; color:color-mix(in srgb, var(--default-color), transparent 40%); margin-bottom:14px;">
+                  Unduh JawaLens dari tautan resmi kami untuk keamanan yang terjamin.
+                </p>
+                <a href="https://s.id/jawalens" target="_blank" class="dl-btn">
+                  <i class="bi bi-android2" style="font-size:18px;"></i>
+                  Download APK Resmi
+                </a>
+              </div>
+
+              <!-- Resources -->
+              <div class="sidebar-card" data-aos="fade-left" data-aos-delay="200">
+                <h5><i class="bi bi-folder2-open me-2" style="color:var(--accent-color);"></i>Sumber Daya</h5>
+                <a href="https://drive.google.com/drive/folders/1MDt4A9cGzWgT4-pa1eWscdNIC5xlZDIW" target="_blank"
+                  class="toc-link">
+                  <i class="bi bi-file-earmark-image"></i> File Marker AR
+                </a>
+                <a href="./keamanan.html" class="toc-link">
+                  <i class="bi bi-shield-check"></i> Cek Keamanan Aplikasi
+                </a>
+                <a href="./haki.html" class="toc-link">
+                  <i class="bi bi-award"></i> Sertifikasi HAKI
+                </a>
+              </div>
+
+              <!-- Help Box -->
+              <div class="sidebar-card dark-card" data-aos="fade-left" data-aos-delay="250">
+                <h5 style="border-bottom-color: rgba(255,255,255,0.2);">
+                  <i class="bi bi-headset me-2"></i>Butuh Bantuan?
+                </h5>
+                <p style="font-size:13px; margin-bottom:14px;">
+                  Tim kami siap membantu Anda. Hubungi melalui Instagram:
+                </p>
+                <a href="https://www.instagram.com/jawalens_/" target="_blank" class="contact-link">
+                  <i class="bi bi-instagram"></i> @jawalens_
+                </a>
+                <a href="https://www.instagram.com/pktc.usd/" target="_blank" class="contact-link">
+                  <i class="bi bi-instagram"></i> @pktc.usd
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ── MAIN CONTENT ── -->
+          <div class="col-lg-9 order-lg-first">
+
+            <!-- ════ PERSYARATAN SISTEM ════ -->
+            <div id="persyaratan">
+              <div class="tut-section-title">
+                <span class="label">Langkah Pertama</span>
+                <h2>Persyaratan Sistem</h2>
+                <p>Pastikan perangkat Anda memenuhi spesifikasi minimum berikut sebelum menginstal JawaLens.</p>
+              </div>
+
+              <div class="row gy-4 mb-5" data-aos="fade-up">
+                <div class="col-sm-6 col-xl-3">
+                  <div class="req-card">
+                    <div class="req-icon maroon"><i class="bi bi-android2"></i></div>
+                    <h5>Versi Android</h5>
+                    <div class="req-value">7.0+</div>
+                    <p>Android Nougat atau yang lebih baru</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                  <div class="req-card">
+                    <div class="req-icon blue"><i class="bi bi-memory"></i></div>
+                    <h5>RAM Minimum</h5>
+                    <div class="req-value">2 GB</div>
+                    <p>Disarankan 3 GB atau lebih untuk performa optimal</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                  <div class="req-card">
+                    <div class="req-icon green"><i class="bi bi-hdd"></i></div>
+                    <h5>Ruang Penyimpanan</h5>
+                    <div class="req-value">100 MB</div>
+                    <p>Ruang kosong yang dibutuhkan untuk instalasi</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                  <div class="req-card">
+                    <div class="req-icon orange"><i class="bi bi-camera"></i></div>
+                    <h5>Kamera</h5>
+                    <div class="req-value">≥ 8 MP</div>
+                    <p>Kamera belakang dengan autofokus untuk AR</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Extra Requirements -->
+              <div class="row gy-3 mb-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-md-6">
+                  <div class="d-flex align-items-start gap-3 p-3"
+                    style="background:#f8fafd; border-radius:12px; border:1px solid #edf2f7;">
+                    <i class="bi bi-wifi" style="font-size:22px; color:var(--accent-color); margin-top:2px;"></i>
+                    <div>
+                      <strong style="color:var(--heading-color); font-size:14px;">Koneksi Internet</strong>
+                      <p style="font-size:13px; margin:4px 0 0; color:#6c757d;">Diperlukan untuk pengunduhan awal dan
+                        pembaruan layanan ARCore. Setelah terinstal, tidak memerlukan internet.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="d-flex align-items-start gap-3 p-3"
+                    style="background:#f8fafd; border-radius:12px; border:1px solid #edf2f7;">
+                    <i class="bi bi-badge-ar" style="font-size:22px; color:var(--accent-color); margin-top:2px;"></i>
+                    <div>
+                      <strong style="color:var(--heading-color); font-size:14px;">Dukungan ARCore</strong>
+                      <p style="font-size:13px; margin:4px 0 0; color:#6c757d;">Perangkat harus mendukung Google ARCore
+                        atau jika tetap error di unninstall saja aplikasi yang terbaru
+                        (Layanan Google Play For AR). Cek di <a href="https://developers.google.com/ar/devices"
+                          target="_blank" style="color:var(--accent-color);">daftar perangkat ARCore</a>.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr style="margin: 50px 0; border-color: color-mix(in srgb, var(--default-color), transparent 90%);">
+
+            <!-- ════ INSTALASI ════ -->
+            <div id="instalasi">
+              <div class="tut-section-title">
+                <span class="label">Langkah Demi Langkah</span>
+                <h2>Cara Mengunduh &amp; Menginstal</h2>
+                <p>Ikuti langkah-langkah berikut untuk menginstal JawaLens di perangkat Android Anda.</p>
+              </div>
+
+              <div class="step-timeline" data-aos="fade-up">
+
+                <!-- Step 1 -->
+                <div class="step-item">
+                  <div class="step-number">1</div>
+                  <div class="step-body">
+                    <h4>Buka Tautan Unduhan Resmi</h4>
+                    <p>Kunjungi halaman utama JawaLens dan klik tombol <strong>"Download App"</strong>, atau langsung
+                      akses tautan resmi kami di <a href="https://s.id/jawalens" target="_blank"
+                        style="color:var(--accent-color); font-weight:600;">s.id/jawalens</a>.</p>
+                    <span class="step-badge badge-info"><i class="bi bi-info-circle me-1"></i> Selalu unduh dari sumber
+                      resmi untuk keamanan data Anda</span>
+                    <img src="assets/img/websid.webp" class="step-img mt-3" alt="Membuka link unduhan JawaLens">
+                  </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-item">
+                  <div class="step-number">2</div>
+                  <div class="step-body">
+                    <h4>Unduh File APK</h4>
+                    <p>Setelah halaman terbuka, klik tombol unduhan. Browser Anda akan mulai mengunduh file <code
+                        style="background:#f0f0f0; padding:2px 6px; border-radius:4px; font-size:13px;">JawaLens.apk</code>.
+                      Tunggu hingga proses unduhan selesai. Anda dapat memantau progresnya di notifikasi atau panel
+                      unduhan browser.</p>
+                    <span class="step-badge badge-warning"><i class="bi bi-exclamation-triangle me-1"></i> Pastikan
+                      koneksi internet stabil saat mengunduh</span>
+                  </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-item">
+                  <div class="step-number">3</div>
+                  <div class="step-body">
+                    <h4>Aktifkan Izin Sumber Tidak Dikenal</h4>
+                    <p>Karena JawaLens diinstal di luar Play Store, Anda perlu mengaktifkan izin instalasi dari sumber
+                      tidak dikenal:</p>
+                    <ol
+                      style="font-size:14.5px; line-height:2; padding-left:20px; color:color-mix(in srgb, var(--default-color), transparent 20%);">
+                      <li>Buka <strong>Pengaturan</strong> di ponsel Anda</li>
+                      <li>Pilih <strong>Keamanan</strong> atau <strong>Privasi</strong></li>
+                      <li>Aktifkan opsi <strong>"Izinkan dari sumber ini"</strong> atau <strong>"Sumber Tidak
+                          Dikenal"</strong></li>
+                      <li>Atau saat diminta saat membuka file APK, ketuk <strong>"Pengaturan"</strong> lalu aktifkan
+                        izin untuk browser/pengelola file Anda</li>
+                    </ol>
+                    <span class="step-badge badge-warning"><i class="bi bi-shield-exclamation me-1"></i> Anda dapat
+                      menonaktifkan kembali izin ini setelah instalasi selesai</span>
+                  </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-item">
+                  <div class="step-number">4</div>
+                  <div class="step-body">
+                    <h4>Buka &amp; Instal File APK</h4>
+                    <p>Buka notifikasi unduhan atau gunakan aplikasi <strong>File Manager</strong> untuk menemukan file
+                      APK yang telah diunduh. Ketuk file tersebut dan pilih <strong>"Instal"</strong> ketika muncul
+                      dialog konfirmasi.</p>
+                    <div class="screenshot-gallery">
+                      <a href="assets/img/install2.jpeg" class="screenshot-thumb glightbox" data-gallery="step4"
+                        data-description="Dialog konfirmasi instalasi JawaLens &mdash; Ketuk <strong>&#34;Instal&#34;</strong> untuk melanjutkan.">
+                        <img src="assets/img/install2.jpeg" alt="Konfirmasi instalasi JawaLens">
+                        <span class="thumb-caption">Ketuk Instal</span>
+                      </a>
+                    </div>
+                    <p
+                      style="font-size:12px; color:color-mix(in srgb, var(--default-color), transparent 45%); margin-top:8px; margin-bottom:0;">
+                      <i class="bi bi-zoom-in me-1" style="color:var(--accent-color);"></i>Ketuk gambar untuk
+                      memperbesar.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step-item">
+                  <div class="step-number">5</div>
+                  <div class="step-body">
+                    <h4>Izinkan Akses Kamera</h4>
+                    <p>Saat pertama kali membuka JawaLens, sistem akan meminta izin akses kamera. Ketuk
+                      <strong>"Izinkan"</strong> agar fitur Augmented Reality dapat berfungsi dengan optimal.
+                    </p>
+                    <span class="step-badge badge-info"><i class="bi bi-camera me-1"></i> Akses kamera wajib untuk fitur
+                      AR transliterasi aksara</span>
+                  </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="step-item">
+                  <div class="step-number">6</div>
+                  <div class="step-body">
+                    <h4>Instalasi Selesai! 🎉</h4>
+                    <p>Aplikasi JawaLens kini telah terinstal di perangkat Anda. Ikon aplikasi akan muncul di layar
+                      utama atau laci aplikasi. Buka aplikasi dan mulailah menjelajahi aksara Jawa dengan teknologi AR!
+                    </p>
+                    <div class="screenshot-gallery">
+                      <a href="assets/img/install5.jpeg" class="screenshot-thumb glightbox" data-gallery="step6"
+                        data-description="Instalasi JawaLens berhasil! &mdash; Ketuk <strong>&#34;Buka&#34;</strong> untuk langsung menggunakan aplikasi, atau <strong>&#34;Selesai&#34;</strong> untuk kembali ke layar utama.">
+                        <img src="assets/img/install5.jpeg" alt="Instalasi JawaLens berhasil">
+                        <span class="thumb-caption">Selesai!</span>
+                      </a>
+                    </div>
+                    <p
+                      style="font-size:12px; color:color-mix(in srgb, var(--default-color), transparent 45%); margin-top:8px; margin-bottom:0;">
+                      <i class="bi bi-zoom-in me-1" style="color:var(--accent-color);"></i>Ketuk gambar untuk
+                      memperbesar.
+                    </p>
+                  </div>
+                </div>
+
+              </div><!-- /step-timeline -->
+            </div>
+
+            <hr style="margin: 50px 0; border-color: color-mix(in srgb, var(--default-color), transparent 90%);">
+
+            <!-- ════ CARA PENGGUNAAN ════ -->
+            <div id="penggunaan">
+              <div class="tut-section-title">
+                <span class="label">Mulai Menggunakan</span>
+                <h2>Cara Menggunakan JawaLens</h2>
+                <p>Setelah terinstal, ikuti langkah-langkah ini untuk mulai menscan aksara Jawa secara real-time.</p>
+              </div>
+
+              <div class="row gy-4 mb-4" data-aos="fade-up">
+                <div class="col-sm-6 col-lg-4">
+                  <div class="usage-card">
+                    <div class="usage-num">1</div>
+                    <i class="bi bi-phone-flip usage-icon"></i>
+                    <h5>Buka Aplikasi</h5>
+                    <p>Cari dan buka aplikasi <strong>JawaLens</strong> dari layar utama atau laci aplikasi perangkat
+                      Anda.</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                  <div class="usage-card">
+                    <div class="usage-num">2</div>
+                    <i class="bi bi-play-btn usage-icon"></i>
+                    <h5>Klik Tombol "Play"</h5>
+                    <p>Pada layar utama aplikasi, ketuk tombol <strong>"Play"</strong> untuk mengaktifkan mode kamera
+                      AR.</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                  <div class="usage-card">
+                    <div class="usage-num">3</div>
+                    <i class="bi bi-file-earmark-image usage-icon"></i>
+                    <h5>Siapkan Marker</h5>
+                    <p>Buka file marker aksara Jawa dari <a
+                        href="https://drive.google.com/file/d/1jtLMVwIZ4vrJN5Dk7vHBJNaHceZvPtMD/view" target="_blank"
+                        style="color:var(--accent-color);">link resmi marker</a> kami. Tampilkan di layar lain atau
+                      cetak.</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                  <div class="usage-card">
+                    <div class="usage-num">4</div>
+                    <i class="bi bi-camera-video usage-icon"></i>
+                    <h5>Arahkan Kamera ke Marker</h5>
+                    <p>Arahkan kamera belakang ponsel Anda ke marker aksara Jawa. Pastikan marker terlihat jelas dan
+                      pencahayaan cukup.</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                  <div class="usage-card">
+                    <div class="usage-num">5</div>
+                    <i class="bi bi-badge-ar usage-icon"></i>
+                    <h5>Lihat Hasil AR</h5>
+                    <p>Transliterasi aksara Jawa ke Latin akan muncul secara real-time di atas marker melalui teknologi
+                      Augmented Reality.</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                  <div class="usage-card">
+                    <div class="usage-num">6</div>
+                    <i class="bi bi-arrow-repeat usage-icon"></i>
+                    <h5>Ganti Marker</h5>
+                    <p>Untuk menscan marker berbeda, tutup kamera sebentar lalu arahkan ke marker baru, atau tekan
+                      tombol <strong>Kembali</strong> untuk memulai ulang.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Usage Tips Box -->
+              <div class="p-4 mt-2"
+                style="background: color-mix(in srgb, var(--accent-color), transparent 92%); border-radius:16px; border-left: 4px solid var(--accent-color);"
+                data-aos="fade-up">
+                <h6 style="color:var(--heading-color); font-weight:700; margin-bottom:10px;">
+                  <i class="bi bi-lightbulb-fill me-2" style="color:var(--accent-color);"></i>Tips untuk Hasil Terbaik
+                </h6>
+                <ul
+                  style="margin:0; padding-left:20px; font-size:14px; color:color-mix(in srgb, var(--default-color), transparent 20%); line-height:2;">
+                  <li>Pastikan pencahayaan ruangan cukup terang, hindari bayangan pada marker</li>
+                  <li>Pegang ponsel dengan stabil saat menscan marker</li>
+                  <li>Jarak ideal antara kamera dan marker adalah <strong>15–30 cm</strong></li>
+                  <li>Marker tidak boleh terlipat atau rusak agar dapat dikenali dengan akurat</li>
+                  <li>Gunakan layar dengan kecerahan tinggi jika menampilkan marker dari perangkat lain</li>
+                </ul>
+              </div>
+
+            </div>
+
+            <hr style="margin: 50px 0; border-color: color-mix(in srgb, var(--default-color), transparent 90%);">
+
+            <!-- ════ TROUBLESHOOTING ════ -->
+            <div id="troubleshooting">
+              <div class="tut-section-title">
+                <span class="label">Mengatasi Masalah</span>
+                <h2>Troubleshooting &amp; Solusi Error</h2>
+                <p>Temukan solusi cepat untuk masalah umum yang mungkin Anda temui saat instalasi atau penggunaan.</p>
+              </div>
+
+              <!-- Error 1: Kamera Gelap -->
+              <div class="trouble-card open" data-aos="fade-up" data-aos-delay="50">
+                <button class="trouble-header" onclick="toggleTrouble(this)">
+                  <div class="trouble-icon-wrap red"><i class="bi bi-camera-video-off"></i></div>
+                  <div class="trouble-title">
+                    <h5>Kamera Gelap / Layar Hitam Saat Membuka AR</h5>
+                    <span class="error-tag">Error kamera tidak muncul gambar saat mode Play diaktifkan</span>
+                  </div>
+                  <div class="trouble-toggle"><i class="bi bi-chevron-down"></i></div>
+                </button>
+                <div class="trouble-body">
+                  <p><strong>Penyebab:</strong> Perangkat Anda belum menginstal atau memiliki versi <em>Layanan Google
+                      Play For AR (ARCore)</em> yang sudah kadaluarsa.</p>
+                  <p><strong>Solusi:</strong></p>
+                  <ol>
+                    <li>Buka <strong>Google Play Store</strong> di ponsel Anda</li>
+                    <li>Ketik dan cari <strong>"Google Play Services for AR"</strong> atau klik tautan langsung:
+                      <a href="https://play.google.com/store/apps/details?id=com.google.ar.core" target="_blank"
+                        style="color:var(--accent-color); font-weight:600;"> Google Play For AR</a>
+                    </li>
+                    <li>Klik <strong>"Instal"</strong> atau <strong>"Perbarui"</strong> jika sudah terinstal</li>
+                    <li>Setelah instalasi selesai, buka kembali aplikasi JawaLens</li>
+                  </ol>
+                  <img
+                    src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=800&q=80"
+                    class="solution-img" alt="Install ARCore untuk mengatasi kamera gelap">
+                  <div class="tip-box">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Jika perangkat Anda tidak terdaftar sebagai perangkat yang mendukung ARCore, fitur AR tidak dapat
+                    berjalan. Silakan cek <a href="https://developers.google.com/ar/devices" target="_blank"
+                      style="color:var(--accent-color);">daftar perangkat ARCore resmi</a>.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Error 2: Hasil Tersangkut -->
+              <div class="trouble-card" data-aos="fade-up" data-aos-delay="100">
+                <button class="trouble-header" onclick="toggleTrouble(this)">
+                  <div class="trouble-icon-wrap orange"><i class="bi bi-arrow-repeat"></i></div>
+                  <div class="trouble-title">
+                    <h5>Hasil Transliterasi Tersangkut / Tidak Berganti</h5>
+                    <span class="error-tag">AR menampilkan transliterasi marker lama padahal sudah diarahkan ke marker
+                      baru</span>
+                  </div>
+                  <div class="trouble-toggle"><i class="bi bi-chevron-down"></i></div>
+                </button>
+                <div class="trouble-body">
+                  <p><strong>Penyebab:</strong> Sistem AR belum mereset status pelacakan marker sebelumnya.</p>
+                  <p><strong>Solusi Cepat (Cara 1):</strong></p>
+                  <ol>
+                    <li>Tutup kamera ponsel dengan tangan Anda sebentar hingga layar menjadi gelap</li>
+                    <li>Buka kembali tangan Anda dan arahkan kamera ke marker yang baru</li>
+                    <li>Sistem AR akan mereset dan mengenali marker baru</li>
+                  </ol>
+                  <p class="mt-3"><strong>Solusi Alternatif (Cara 2):</strong></p>
+                  <ol>
+                    <li>Tekan tombol <strong>Kembali</strong> (back) di bagian bawah kiri layar ponsel</li>
+                    <li>Aplikasi akan kembali ke menu utama</li>
+                    <li>Ketuk kembali tombol <strong>"Play"</strong></li>
+                    <li>Arahkan kamera ke marker yang diinginkan</li>
+                  </ol>
+                  <div class="tip-box">
+                    <i class="bi bi-lightbulb me-2"></i>
+                    Metode ini paling efektif bila Anda ingin berganti antara lebih dari 2 marker secara cepat.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Error 3: Instalasi Gagal / Google Play Protect -->
+              <div class="trouble-card" data-aos="fade-up" data-aos-delay="150">
+                <button class="trouble-header" onclick="toggleTrouble(this)">
+                  <div class="trouble-icon-wrap orange"><i class="bi bi-shield-exclamation"></i></div>
+                  <div class="trouble-title">
+                    <h5>Google Play Protect Memblokir Instalasi</h5>
+                    <span class="error-tag">Muncul pesan "Aplikasi yang tidak aman diblokir" saat mencoba menginstal
+                      JawaLens</span>
+                  </div>
+                  <div class="trouble-toggle"><i class="bi bi-chevron-down"></i></div>
+                </button>
+                <div class="trouble-body">
+                  <p><strong>Penyebab:</strong> Google Play Protect mendeteksi JawaLens sebagai aplikasi dari luar Play
+                    Store dan menampilkan peringatan keamanan. Ini adalah <strong>perilaku normal</strong> untuk semua
+                    APK yang diinstal secara manual (sideload) dan <strong>bukan berarti aplikasi berbahaya</strong>.
+                    JawaLens telah diuji bebas dari virus &mdash; lihat <a href="./keamanan.html"
+                      style="color:var(--accent-color);">halaman Keamanan Aplikasi</a> untuk bukti lengkap.</p>
+                  <p><strong>Langkah-langkah Mengatasinya:</strong></p>
+
+                  <!-- Screenshot gallery -- klik untuk zoom/lightbox -->
+                  <div class="screenshot-gallery mb-3">
+
+                    <a href="assets/img/install1.jpeg" class="screenshot-thumb glightbox" data-gallery="play-protect"
+                      data-description="Langkah 1 &mdash; Saat file APK selesai diunduh, ketuk file tersebut. Pilih <strong>&#34;Installer paket&#34;</strong> dari dialog &#34;Buka dengan&#34; yang muncul.">
+                      <img src="assets/img/install1.jpeg" alt="Pilih Installer paket">
+                      <span class="thumb-caption">1. Pilih Installer</span>
+                    </a>
+
+                    <a href="assets/img/install2.jpeg" class="screenshot-thumb glightbox" data-gallery="play-protect"
+                      data-description="Langkah 2 &mdash; Dialog konfirmasi instalasi akan muncul. Ketuk tombol <strong>&#34;Instal&#34;</strong> untuk melanjutkan.">
+                      <img src="assets/img/install2.jpeg" alt="Konfirmasi instalasi">
+                      <span class="thumb-caption">2. Konfirmasi</span>
+                    </a>
+
+                    <a href="assets/img/install3.jpeg" class="screenshot-thumb glightbox" data-gallery="play-protect"
+                      data-description="Langkah 3 &mdash; Google Play Protect menampilkan peringatan &#34;Aplikasi yang tidak aman diblokir&#34;. Ketuk <strong>&#34;Detail selengkapnya&#34;</strong> untuk menampilkan opsi lanjutan.">
+                      <img src="assets/img/install3.jpeg" alt="Play Protect memblokir">
+                      <span class="thumb-caption">3. Klik Detail</span>
+                    </a>
+
+                    <a href="assets/img/install4.jpeg" class="screenshot-thumb glightbox" data-gallery="play-protect"
+                      data-description="Langkah 4 &mdash; Setelah detail terbuka, ketuk tombol <strong>&#34;Tetap instal&#34;</strong> untuk melanjutkan instalasi meskipun ada peringatan Play Protect.">
+                      <img src="assets/img/install4.jpeg" alt="Klik Tetap instal">
+                      <span class="thumb-caption">4. Tetap Instal</span>
+                    </a>
+
+                    <a href="assets/img/install5.jpeg" class="screenshot-thumb glightbox" data-gallery="play-protect"
+                      data-description="Langkah 5 &mdash; Instalasi berhasil! Dialog <strong>&#34;Aplikasi terinstal&#34;</strong> akan muncul. Ketuk <strong>&#34;Buka&#34;</strong> untuk langsung menggunakan JawaLens, atau <strong>&#34;Selesai&#34;</strong> untuk kembali.">
+                      <img src="assets/img/install5.jpeg" alt="Instalasi berhasil">
+                      <span class="thumb-caption">5. Selesai!</span>
+                    </a>
+
+                  </div>
+                  <p
+                    style="font-size:12px; color:color-mix(in srgb, var(--default-color), transparent 45%); margin-bottom:14px;">
+                    <i class="bi bi-zoom-in me-1" style="color:var(--accent-color);"></i>
+                    Ketuk gambar untuk memperbesar dan melihat detail setiap langkah.
+                  </p>
+
+                  <ol>
+                    <li>Ketuk file APK yang sudah diunduh &rarr; pilih <strong>"Installer paket"</strong></li>
+                    <li>Ketuk <strong>"Instal"</strong> pada dialog konfirmasi</li>
+                    <li>Saat peringatan Play Protect muncul, ketuk <strong>"Detail selengkapnya"</strong></li>
+                    <li>Ketuk <strong>"Tetap instal"</strong> &mdash; JawaLens aman untuk diinstal</li>
+                    <li>Ketuk <strong>"Buka"</strong> untuk langsung menggunakan aplikasi</li>
+                  </ol>
+                  <div class="tip-box">
+                    <i class="bi bi-shield-check me-2"></i>
+                    Peringatan Play Protect muncul karena JawaLens tidak didistribusikan melalui Play Store, bukan
+                    karena mengandung virus. Selama Anda mengunduh dari tautan resmi <a href="https://s.id/jawalens"
+                      target="_blank" style="color:var(--accent-color); font-weight:600;">s.id/jawalens</a>, aplikasi
+                    100% aman digunakan.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Error 4: Instalasi Gagal -->
+              <div class="trouble-card" data-aos="fade-up" data-aos-delay="170">
+                <button class="trouble-header" onclick="toggleTrouble(this)">
+                  <div class="trouble-icon-wrap blue"><i class="bi bi-x-circle"></i></div>
+                  <div class="trouble-title">
+                    <h5>Instalasi Gagal / "Aplikasi Tidak Terinstal"</h5>
+                    <span class="error-tag">Muncul pesan "App not installed" atau proses instalasi berhenti di tengah
+                      jalan</span>
+                  </div>
+                  <div class="trouble-toggle"><i class="bi bi-chevron-down"></i></div>
+                </button>
+                <div class="trouble-body">
+                  <p><strong>Penyebab umum:</strong></p>
+                  <ul>
+                    <li>Izin instalasi dari sumber tidak dikenal belum diaktifkan</li>
+                    <li>File APK yang diunduh tidak lengkap atau rusak (corrupt)</li>
+                    <li>Penyimpanan internal perangkat penuh</li>
+                    <li>Versi Android tidak kompatibel (di bawah 7.0)</li>
+                  </ul>
+                  <p><strong>Solusi:</strong></p>
+                  <ol>
+                    <li>Periksa dan aktifkan <strong>Izin Sumber Tidak Dikenal</strong> di Pengaturan &rarr; Keamanan
+                      (lihat
+                      Langkah 3 di bagian Instalasi)</li>
+                    <li>Hapus file APK yang sudah diunduh, lalu unduh ulang dari tautan resmi</li>
+                    <li>Bebaskan ruang penyimpanan minimal <strong>200 MB</strong> di memori internal</li>
+                    <li>Pastikan versi Android Anda adalah <strong>7.0 (Nougat) atau lebih baru</strong></li>
+                  </ol>
+                  <div class="tip-box">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Jika masalah berlanjut, coba restart perangkat Anda terlebih dahulu sebelum mencoba instalasi ulang.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Error 4: App Crash -->
+              <div class="trouble-card" data-aos="fade-up" data-aos-delay="200">
+                <button class="trouble-header" onclick="toggleTrouble(this)">
+                  <div class="trouble-icon-wrap purple"><i class="bi bi-lightning-charge"></i></div>
+                  <div class="trouble-title">
+                    <h5>Aplikasi Tiba-Tiba Menutup / Crash</h5>
+                    <span class="error-tag">Aplikasi berhenti sendiri saat dibuka atau saat sedang digunakan</span>
+                  </div>
+                  <div class="trouble-toggle"><i class="bi bi-chevron-down"></i></div>
+                </button>
+                <div class="trouble-body">
+                  <p><strong>Penyebab:</strong> RAM perangkat penuh, cache aplikasi menumpuk, atau konflik dengan versi
+                    sebelumnya.</p>
+                  <p><strong>Solusi:</strong></p>
+                  <ol>
+                    <li>Tutup semua aplikasi yang berjalan di latar belakang untuk membebaskan RAM</li>
+                    <li>Buka <strong>Pengaturan → Aplikasi → JawaLens</strong></li>
+                    <li>Ketuk <strong>"Hapus Cache"</strong> lalu coba buka kembali</li>
+                    <li>Jika masih crash, ketuk <strong>"Hapus Data"</strong> dan buka ulang aplikasi</li>
+                    <li>Sebagai langkah terakhir, uninstal dan instal ulang JawaLens dari tautan resmi</li>
+                  </ol>
+                  <img
+                    src="https://images.unsplash.com/photo-1584824486509-112e4181ff6b?auto=format&fit=crop&w=800&q=80"
+                    class="solution-img" alt="Pengaturan aplikasi untuk clear cache">
+                  <div class="tip-box">
+                    <i class="bi bi-lightbulb me-2"></i>
+                    Restart ponsel Anda setelah membersihkan cache untuk hasil yang lebih efektif.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Error 5: Izin Kamera Ditolak -->
+              <div class="trouble-card" data-aos="fade-up" data-aos-delay="250">
+                <button class="trouble-header" onclick="toggleTrouble(this)">
+                  <div class="trouble-icon-wrap green"><i class="bi bi-camera-video-off-fill"></i></div>
+                  <div class="trouble-title">
+                    <h5>Izin Kamera Ditolak / Tidak Bisa Akses Kamera</h5>
+                    <span class="error-tag">Aplikasi tidak dapat membuka kamera karena izin tidak diberikan
+                      sebelumnya</span>
+                  </div>
+                  <div class="trouble-toggle"><i class="bi bi-chevron-down"></i></div>
+                </button>
+                <div class="trouble-body">
+                  <p><strong>Penyebab:</strong> Izin akses kamera untuk JawaLens pernah ditolak atau belum diberikan.
+                  </p>
+                  <p><strong>Solusi:</strong></p>
+                  <ol>
+                    <li>Buka <strong>Pengaturan</strong> di ponsel Anda</li>
+                    <li>Pilih <strong>Aplikasi</strong> atau <strong>Manajemen Aplikasi</strong></li>
+                    <li>Cari dan ketuk <strong>JawaLens</strong></li>
+                    <li>Pilih <strong>Izin</strong> (Permissions)</li>
+                    <li>Aktifkan izin <strong>Kamera</strong> menjadi <strong>"Izinkan"</strong></li>
+                    <li>Kembali dan buka ulang aplikasi JawaLens</li>
+                  </ol>
+                  <div class="tip-box">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Di beberapa perangkat, Anda juga dapat memberikan izin langsung saat aplikasi memintanya kembali
+                    setelah dibuka ulang.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Error 6: ARCore Tidak Kompatibel -->
+              <div class="trouble-card" data-aos="fade-up" data-aos-delay="300">
+                <button class="trouble-header" onclick="toggleTrouble(this)">
+                  <div class="trouble-icon-wrap red"><i class="bi bi-phone-vibrate"></i></div>
+                  <div class="trouble-title">
+                    <h5>Perangkat Tidak Mendukung AR / ARCore Tidak Kompatibel</h5>
+                    <span class="error-tag">Muncul pesan "Your device doesn't support AR" atau fitur AR tidak
+                      berjalan</span>
+                  </div>
+                  <div class="trouble-toggle"><i class="bi bi-chevron-down"></i></div>
+                </button>
+                <div class="trouble-body">
+                  <p><strong>Penyebab:</strong> Perangkat Android Anda tidak masuk dalam daftar perangkat yang didukung
+                    oleh Google ARCore, atau driver kamera tidak kompatibel dengan library AR.</p>
+                  <p><strong>Cara Mengecek Kompatibilitas:</strong></p>
+                  <ol>
+                    <li>Kunjungi <a href="https://developers.google.com/ar/devices" target="_blank"
+                        style="color:var(--accent-color);">halaman resmi daftar perangkat ARCore</a></li>
+                    <li>Cari nama model perangkat Anda di daftar tersebut</li>
+                    <li>Jika perangkat Anda terdaftar, coba update sistem Android ke versi terbaru</li>
+                  </ol>
+                  <p><strong>Jika Perangkat Tidak Kompatibel:</strong></p>
+                  <ul>
+                    <li>Sayangnya fitur AR tidak dapat berjalan di perangkat yang tidak mendukung ARCore</li>
+                    <li>Kami merekomendasikan penggunaan perangkat dengan Android 8.0+ dan dukungan ARCore resmi</li>
+                    <li>Hubungi tim kami melalui Instagram untuk rekomendasi perangkat yang kompatibel</li>
+                  </ul>
+                  <div class="tip-box">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Sebagian besar smartphone flagship dan mid-range keluaran 2018 ke atas sudah mendukung ARCore.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Error 7: Marker Tidak Terdeteksi -->
+              <div class="trouble-card" data-aos="fade-up" data-aos-delay="350">
+                <button class="trouble-header" onclick="toggleTrouble(this)">
+                  <div class="trouble-icon-wrap orange"><i class="bi bi-search"></i></div>
+                  <div class="trouble-title">
+                    <h5>Marker Tidak Terdeteksi / AR Tidak Muncul</h5>
+                    <span class="error-tag">Kamera aktif namun tidak ada overlay AR yang muncul saat diarahkan ke
+                      marker</span>
+                  </div>
+                  <div class="trouble-toggle"><i class="bi bi-chevron-down"></i></div>
+                </button>
+                <div class="trouble-body">
+                  <p><strong>Penyebab umum:</strong></p>
+                  <ul>
+                    <li>Marker terlalu kecil atau beresolusi rendah</li>
+                    <li>Pencahayaan terlalu redup atau terlalu silau (refleksi)</li>
+                    <li>Marker mengalami distorsi, terlipat, atau tertutup sebagian</li>
+                    <li>Jarak kamera terlalu jauh atau terlalu dekat dari marker</li>
+                  </ul>
+                  <p><strong>Solusi:</strong></p>
+                  <ol>
+                    <li>Pastikan marker dicetak minimal ukuran <strong>A5 (14.8 × 21 cm)</strong> atau tampilkan di
+                      layar berukuran besar</li>
+                    <li>Tingkatkan pencahayaan ruangan atau gunakan cahaya buatan yang merata</li>
+                    <li>Hindari permukaan mengkilap yang memantulkan cahaya berlebihan</li>
+                    <li>Coba jarak <strong>15–30 cm</strong> antara kamera dan marker</li>
+                    <li>Pastikan marker tidak terlipat dan terlihat penuh di frame kamera</li>
+                    <li>Unduh ulang file marker dari <a
+                        href="https://drive.google.com/file/d/1jtLMVwIZ4vrJN5Dk7vHBJNaHceZvPtMD/view" target="_blank"
+                        style="color:var(--accent-color);">tautan resmi</a> jika marker yang digunakan terlihat buram
+                    </li>
+                  </ol>
+                  <div class="tip-box">
+                    <i class="bi bi-lightbulb me-2"></i>
+                    Gunakan mode potret (portrait) saat menscan dan pastikan marker berada tepat di tengah layar untuk
+                    deteksi yang lebih akurat.
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /troubleshooting -->
+
+            <hr style="margin: 50px 0; border-color: color-mix(in srgb, var(--default-color), transparent 90%);">
+
+            <!-- ════ FAQ ════ -->
+            <div id="faq-tut">
+              <div class="tut-section-title">
+                <span class="label">Pertanyaan Umum</span>
+                <h2>FAQ Instalasi &amp; Penggunaan</h2>
+                <p>Jawaban atas pertanyaan yang paling sering diajukan seputar JawaLens.</p>
+              </div>
+
+              <div data-aos="fade-up">
+
+                <div class="faq-item">
+                  <div class="faq-question" onclick="toggleFaq(this)">
+                    <h6>Apakah JawaLens tersedia di Google Play Store?</h6>
+                    <i class="bi bi-plus-circle faq-toggle"></i>
+                  </div>
+                  <div class="faq-answer">
+                    Saat ini JawaLens hanya tersedia sebagai file APK yang dapat diunduh langsung dari tautan resmi kami
+                    di <a href="https://s.id/jawalens" target="_blank"
+                      style="color:var(--accent-color);">s.id/jawalens</a>. Kami berencana untuk merilisnya di Google
+                    Play Store di masa mendatang.
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <div class="faq-question" onclick="toggleFaq(this)">
+                    <h6>Apakah JawaLens bisa digunakan tanpa koneksi internet?</h6>
+                    <i class="bi bi-plus-circle faq-toggle"></i>
+                  </div>
+                  <div class="faq-answer">
+                    Ya! Setelah aplikasi dan ARCore terinstal, JawaLens dapat digunakan secara offline tanpa koneksi
+                    internet. Internet hanya diperlukan saat proses pengunduhan dan instalasi awal.
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <div class="faq-question" onclick="toggleFaq(this)">
+                    <h6>Apakah JawaLens aman dan tidak mengandung virus?</h6>
+                    <i class="bi bi-plus-circle faq-toggle"></i>
+                  </div>
+                  <div class="faq-answer">
+                    JawaLens telah diuji menggunakan VirusTotal dan Jotti's Malware Scan dan dinyatakan bersih dari
+                    virus maupun malware. Kami juga telah mendapatkan sertifikasi HAKI. Lihat halaman <a
+                      href="./keamanan.html" style="color:var(--accent-color);">Keamanan Aplikasi</a> untuk bukti
+                    lengkap. Pastikan selalu unduh dari sumber resmi kami.
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <div class="faq-question" onclick="toggleFaq(this)">
+                    <h6>Berapa banyak aksara Jawa yang dapat dikenali JawaLens?</h6>
+                    <i class="bi bi-plus-circle faq-toggle"></i>
+                  </div>
+                  <div class="faq-answer">
+                    JawaLens mendukung pengenalan aksara Jawa Hanacaraka (20 aksara dasar) beserta sandhangan dan
+                    pasangannya melalui marker yang tersedia. Jumlah aksara yang didukung akan terus berkembang di
+                    pembaruan berikutnya.
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <div class="faq-question" onclick="toggleFaq(this)">
+                    <h6>Apakah JawaLens bisa digunakan di iPhone / iOS?</h6>
+                    <i class="bi bi-plus-circle faq-toggle"></i>
+                  </div>
+                  <div class="faq-answer">
+                    Saat ini JawaLens hanya tersedia untuk platform Android. Dukungan untuk iOS (iPhone) sedang dalam
+                    tahap pengembangan dan akan diumumkan melalui media sosial resmi kami.
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <div class="faq-question" onclick="toggleFaq(this)">
+                    <h6>Di mana saya bisa mendapatkan file marker untuk JawaLens?</h6>
+                    <i class="bi bi-plus-circle faq-toggle"></i>
+                  </div>
+                  <div class="faq-answer">
+                    File marker tersedia secara gratis di Google Drive kami. Akses melalui tautan: <a
+                      href="https://drive.google.com/drive/folders/1MDt4A9cGzWgT4-pa1eWscdNIC5xlZDIW" target="_blank"
+                      style="color:var(--accent-color);">Folder Marker JawaLens</a>. Anda dapat menampilkannya di layar
+                    atau mencetaknya.
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <div class="faq-question" onclick="toggleFaq(this)">
+                    <h6>Bagaimana cara memperbarui aplikasi JawaLens ke versi terbaru?</h6>
+                    <i class="bi bi-plus-circle faq-toggle"></i>
+                  </div>
+                  <div class="faq-answer">
+                    Untuk memperbarui JawaLens, unduh APK versi terbaru dari tautan resmi kami dan instal di atas versi
+                    yang sudah ada. Anda tidak perlu menghapus aplikasi lama — prosesnya akan menggantikan (update)
+                    secara otomatis. Pantau media sosial kami untuk notifikasi pembaruan.
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- /faq -->
+
+          </div><!-- /col main content -->
+        </div><!-- /row -->
+      </div><!-- /container -->
+    </section>
+
+    <!-- ══════ CTA BANNER ══════ -->
+    <section class="tut-section" id="dukungan" style="scroll-margin-top: 100px;">
+      <div class="container">
+        <div class="cta-banner" data-aos="zoom-in">
+          <h2>Siap Menjelajahi Aksara Jawa?</h2>
+          <p>Unduh JawaLens sekarang dan mulai perjalanan Anda mengenal warisan budaya Nusantara melalui teknologi AR
+            yang inovatif.</p>
+          <a href="https://s.id/jawalens" target="_blank" class="btn-white">
+            <i class="bi bi-android2 me-2"></i>Download JawaLens — Gratis!
+          </a>
+        </div>
+
+        <!-- Support Cards -->
+        <div class="row gy-4 mt-4">
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div
+              style="background:var(--surface-color); border-radius:16px; padding:28px 24px; border:1px solid color-mix(in srgb, var(--default-color), transparent 88%); text-align:center; height:100%;">
+              <i class="bi bi-instagram"
+                style="font-size:36px; color:var(--accent-color); margin-bottom:12px; display:block;"></i>
+              <h6 style="color:var(--heading-color); font-weight:700; margin-bottom:8px;">Instagram Resmi</h6>
+              <p
+                style="font-size:13px; color:color-mix(in srgb, var(--default-color), transparent 40%); margin-bottom:14px;">
+                Ikuti akun kami untuk update terbaru, tips penggunaan, dan info pembaruan aplikasi.</p>
+              <a href="https://www.instagram.com/jawalens_/" target="_blank"
+                style="color:var(--accent-color); font-weight:600; font-size:14px;">@jawalens_</a>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div
+              style="background:var(--surface-color); border-radius:16px; padding:28px 24px; border:1px solid color-mix(in srgb, var(--default-color), transparent 88%); text-align:center; height:100%;">
+              <i class="bi bi-people-fill"
+                style="font-size:36px; color:var(--accent-color); margin-bottom:12px; display:block;"></i>
+              <h6 style="color:var(--heading-color); font-weight:700; margin-bottom:8px;">Tim Pengembang</h6>
+              <p
+                style="font-size:13px; color:color-mix(in srgb, var(--default-color), transparent 40%); margin-bottom:14px;">
+                Dikembangkan bersama Pusat Keunggulan Teknologi Cerdas Universitas Sanata Dharma.</p>
+              <a href="https://www.instagram.com/pktc.usd/" target="_blank"
+                style="color:var(--accent-color); font-weight:600; font-size:14px;">@pktc.usd</a>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div
+              style="background:var(--surface-color); border-radius:16px; padding:28px 24px; border:1px solid color-mix(in srgb, var(--default-color), transparent 88%); text-align:center; height:100%;">
+              <i class="bi bi-star-fill" style="font-size:36px; color:#f5a623; margin-bottom:12px; display:block;"></i>
+              <h6 style="color:var(--heading-color); font-weight:700; margin-bottom:8px;">Beri Penilaian</h6>
+              <p
+                style="font-size:13px; color:color-mix(in srgb, var(--default-color), transparent 40%); margin-bottom:14px;">
+                Bantu kami berkembang dengan memberikan penilaian dan masukan Anda tentang JawaLens.</p>
+              <a href="https://s.id/PenilaianJawaLens" target="_blank"
+                style="color:var(--accent-color); font-weight:600; font-size:14px;">Beri Penilaian Sekarang</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════ FOOTER ══════ -->
+  <footer id="footer" class="footer">
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span>
+        <strong class="px-1 sitename">JawaLens</strong>
+        <span>All Rights Reserved</span>
+      </p>
+      <div class="credits">
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    // Accordion: Troubleshooting cards
+    function toggleTrouble(btn) {
+      const card = btn.closest('.trouble-card');
+      const isOpen = card.classList.contains('open');
+      // Close all others
+      document.querySelectorAll('.trouble-card.open').forEach(c => c.classList.remove('open'));
+      if (!isOpen) card.classList.add('open');
+    }
+
+    // Accordion: FAQ
+    function toggleFaq(questionEl) {
+      const item = questionEl.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // Quick Nav active highlight on scroll
+    (function () {
+      const sections = ['persyaratan', 'instalasi', 'penggunaan', 'troubleshooting', 'faq-tut', 'dukungan'];
+      const chips = document.querySelectorAll('.quick-nav .chip');
+
+      function updateActiveChip() {
+        let current = '';
+        sections.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 200) current = id;
+          }
+        });
+        chips.forEach(chip => {
+          chip.classList.remove('active');
+          if (chip.getAttribute('href') === '#' + current) {
+            chip.classList.add('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveChip, { passive: true });
+      updateActiveChip();
+    })();
+  </script>
+
+</body>
+
+</html>
